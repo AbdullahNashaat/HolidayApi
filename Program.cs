@@ -1,4 +1,5 @@
 using HolidayApi.Model;
+using HolidayApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<HolidayContext>(opt =>
     opt.UseMySQL("server=localhost;database=Holiday;user=root;password=root"));
+builder.Services.AddTransient<TextfileService>();
 
 var app = builder.Build();
 

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HolidayApi.Model;
+using HolidayApi.Services;
 
 namespace HolidayApi.Controllers
 {
@@ -26,6 +27,20 @@ namespace HolidayApi.Controllers
         public async Task<ActionResult<IEnumerable<Country>>> GetCountry()
         {
             return await _context.Country.ToListAsync();
+        }
+
+        // SetCountriesData
+        [HttpGet("setcountriesdata")]
+        public ActionResult SetCountriesData()
+        {
+            List<Country> countries= new List< Country > (TextfileService.GetContries());
+
+            foreach(Country country in countries){
+                _context.Country.Add(country);
+                _context.SaveChangesAsync();
+            }
+            return Ok();
+
         }
 
         // GET: api/Countries/5

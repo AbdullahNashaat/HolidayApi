@@ -28,6 +28,25 @@ namespace HolidayApi.Controllers
             return await _context.Holiday.ToListAsync();
         }
 
+        // Get Holidays Data
+        [HttpGet("getholidaysdata")]
+        public ActionResult GetHoliDaysdata()
+        {
+            string BASE_CALENDAR_ID_FOR_PUBLIC_HOLIDAY = "holiday@group.v.calendar.google.com"; // Calendar Id. This is public but apparently not documented anywhere officialy.
+
+            string API_KEY = "YOUR_API_KEY";
+
+            string CALENDAR_REGION = "en.usa"; // This variable refers to region whose holidays do we need to fetch
+            /*List<Country> countries = new List<Country>(TextfileService.GetContries());
+
+            foreach (Country country in countries)
+            {
+                _context.Country.Add(country);
+                _context.SaveChangesAsync();
+            }*/
+            return Ok();
+
+        }
         // GET: api/Holidays/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Holiday>> GetHoliday(int id)
