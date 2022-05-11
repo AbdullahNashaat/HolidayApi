@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HolidayApi.Model;
+using ConsumingWebAapiRESTinMVC.Controllers;
 
 namespace HolidayApi.Controllers
 {
@@ -30,20 +31,23 @@ namespace HolidayApi.Controllers
 
         // Get Holidays Data
         [HttpGet("getholidaysdata")]
-        public ActionResult GetHoliDaysdata()
+        public async Task<ActionResult<Holiday>> GetHoliDaysdata()
         {
-            string BASE_CALENDAR_ID_FOR_PUBLIC_HOLIDAY = "holiday@group.v.calendar.google.com"; // Calendar Id. This is public but apparently not documented anywhere officialy.
 
-            string API_KEY = "YOUR_API_KEY";
 
-            string CALENDAR_REGION = "en.usa"; // This variable refers to region whose holidays do we need to fetch
-            /*List<Country> countries = new List<Country>(TextfileService.GetContries());
-
+            //Task<ActionResult<IEnumerable<Country>>> myResult = CountriesController.GetCountry();
+            List<Country> countries = _context.Country.ToList();
             foreach (Country country in countries)
             {
-                _context.Country.Add(country);
-                _context.SaveChangesAsync();
-            }*/
+                List<Holiday> Holidays = new List<Holiday>(HomeController.GetHolidaysFromGoogleForCountry(country.CalenderRegion, country.Id));
+
+                foreach (Holiday holiday in Holidays)
+                {
+                    _context.Holiday.Add(holiday);
+                    //if (null == _context.Holiday.FirstOrDefault(te => te.GlobalId == holiday.GlobalId))
+                        await _context.SaveChangesAsync();
+                }
+            }
             return Ok();
 
         }
@@ -52,6 +56,18 @@ namespace HolidayApi.Controllers
         public async Task<ActionResult<Holiday>> GetHoliday(int id)
         {
             var holiday = await _context.Holiday.FindAsync(id);
+
+            if (holiday == null)
+            {
+                return NotFound();
+            }
+
+            return holiday;
+        }
+        [HttpGet("countryid/{id}")]
+        public  ActionResult<Holiday> GetHolidaybyCountry(int id)
+        {
+            var holiday =  _context.Holiday.FirstOrDefault(te => te.CountryId == id);
 
             if (holiday == null)
             {

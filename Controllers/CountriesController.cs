@@ -37,7 +37,7 @@ namespace HolidayApi.Controllers
 
             foreach(Country country in countries){
                 _context.Country.Add(country);
-                _context.SaveChangesAsync();
+                 _context.SaveChangesAsync();
             }
             return Ok();
 
