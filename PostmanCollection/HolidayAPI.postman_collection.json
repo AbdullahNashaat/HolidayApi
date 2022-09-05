@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "e449a45d-9e03-4d6a-bc76-db59a117ffef",
+		"name": "HolidayAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20508768"
+	},
+	"item": [
+		{
+			"name": "Set Countries data from file",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44345/api/countries/setcountriesdata",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44345",
+					"path": [
+						"api",
+						"countries",
+						"setcountriesdata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Holidays data from Google Calender API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44345/api/holidays/getholidaysdata",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44345",
+					"path": [
+						"api",
+						"holidays",
+						"getholidaysdata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Countries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44345/api/countries",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44345",
+					"path": [
+						"api",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Holidays",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44345/api/holidays",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44345",
+					"path": [
+						"api",
+						"holidays"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Holiday",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44345/api/holidays/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44345",
+					"path": [
+						"api",
+						"holidays",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Holidays by Country Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44345/api/holidays/countryid/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44345",
+					"path": [
+						"api",
+						"holidays",
+						"countryid",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a holiday",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"globalId\": \"20231231_dfrk6670gdkbiafs1rs3nqc1sg\",\r\n    \"name\": \"New Year's Eve (regional holiday)\",\r\n    \"startDate\": \"2023-12-31T00:00:00\",\r\n    \"endDate\": \"2024-01-01T00:00:00\",\r\n    \"countryId\": 1,\r\n    \"country\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44345/api/holidays/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44345",
+					"path": [
+						"api",
+						"holidays",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add holiday",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"GlobalId\": \"20231231_dfrk6670gdkbiafs1rs3nqc1ff\",\r\n    \"Name\": \"New Year's Eve (regional holiday)\",\r\n    \"StartDate\": \"2023-12-31T00:00:00\",\r\n    \"EndDate\": \"2024-01-01T00:00:00\",\r\n    \"CountryId\": 2\r\n   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44345/api/holidays",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44345",
+					"path": [
+						"api",
+						"holidays"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete holidays",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44345/api/holidays/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44345",
+					"path": [
+						"api",
+						"holidays",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

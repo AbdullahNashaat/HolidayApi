@@ -31,13 +31,17 @@ namespace HolidayApi.Controllers
 
         // SetCountriesData
         [HttpGet("setcountriesdata")]
-        public ActionResult SetCountriesData()
+        public async Task<ActionResult> SetCountriesData()
         {
-            List<Country> countries= new List< Country > (TextfileService.GetContries());
+            List<Country> countries = new List<Country>(TextfileService.GetContries());
 
-            foreach(Country country in countries){
-                _context.Country.Add(country);
-                 _context.SaveChangesAsync();
+            foreach (Country country in countries)
+            {
+                if (null == _context.Country.FirstOrDefault(te => te.CalenderRegion == country.CalenderRegion))
+                {
+                    _context.Country.Add(country);
+                    await _context.SaveChangesAsync();
+                }
             }
             return Ok();
 

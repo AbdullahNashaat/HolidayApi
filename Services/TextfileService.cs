@@ -15,7 +15,7 @@ namespace HolidayApi.Services
             foreach (string subline in subsLine)
             {
                 string[] sub = subline.Split(',', '#');
-                int len = sub[0].Length - HolidayWord.Length - 1;
+                int len = sub[0].Length - HolidayWord.Length ;
 
                 //s = s.Substring(0, s.Length - n);
                 if (sub[0].Contains(HolidayWord))

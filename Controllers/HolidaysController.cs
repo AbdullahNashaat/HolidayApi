@@ -37,16 +37,35 @@ namespace HolidayApi.Controllers
 
             //Task<ActionResult<IEnumerable<Country>>> myResult = CountriesController.GetCountry();
             List<Country> countries = _context.Country.ToList();
+            //foreach (Country country in countries)
+            //{
+            //    List<Holiday> Holidays = new List<Holiday>(HomeController.GetHolidaysFromGoogleForCountry(country.CalenderRegion, country.Id));
+
+            //    foreach (Holiday holiday in Holidays)
+            //    {
+            //        _context.Holiday.Add(holiday);
+            //        if (null == _context.Holiday.FirstOrDefault(te => te.GlobalId == holiday.GlobalId))
+            //            await _context.SaveChangesAsync();
+            //    }
+            //}
+            List<Holiday> Holidays = new List<Holiday>();
             foreach (Country country in countries)
             {
-                List<Holiday> Holidays = new List<Holiday>(HomeController.GetHolidaysFromGoogleForCountry(country.CalenderRegion, country.Id));
-
-                foreach (Holiday holiday in Holidays)
+                List<Holiday> Holidays1 = new List<Holiday>(HomeController.GetHolidaysFromGoogleForCountry(country.CalenderRegion, country.Id));
+                Holidays.AddRange(Holidays1);
+                //foreach (Holiday holiday in Holidays)
+                //{
+                //    _context.Holiday.Add(holiday);
+                //    if (null == _context.Holiday.FirstOrDefault(te => te.GlobalId == holiday.GlobalId))
+                //        await _context.SaveChangesAsync();
+                //}
+            }
+            if(_context.Holiday.Count()==0)
                 {
-                    _context.Holiday.Add(holiday);
-                    //if (null == _context.Holiday.FirstOrDefault(te => te.GlobalId == holiday.GlobalId))
-                        await _context.SaveChangesAsync();
-                }
+                _context.Holiday.AddRange(Holidays);
+                await _context.SaveChangesAsync();
+
+
             }
             return Ok();
 
@@ -65,16 +84,23 @@ namespace HolidayApi.Controllers
             return holiday;
         }
         [HttpGet("countryid/{id}")]
-        public  ActionResult<Holiday> GetHolidaybyCountry(int id)
+        public IEnumerable<Holiday> GetHolidaybyCountry(int id)
         {
-            var holiday =  _context.Holiday.FirstOrDefault(te => te.CountryId == id);
 
-            if (holiday == null)
+            Holiday holiday = new Holiday();
+            holiday.CountryId= id;
+            IEnumerable<Holiday> holidays = _context.Holiday.Where(p => p.CountryId == id);
+                //.GroupBy(te => te.CountryId);
+                //.Select(pr => pr.CountryId )  ;
+
+            /*if (holiday != null)
             {
-                return NotFound();
-            }
+                //   baaad 
+                //return NotFound();
+               
+            }*/
 
-            return holiday;
+            return holidays;
         }
 
         // PUT: api/Holidays/5

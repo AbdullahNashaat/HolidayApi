@@ -22,11 +22,24 @@ namespace HolidayApi.Model
             optionsBuilder.UseMySQL("server=localhost;database=Holiday;user=root;password=root");
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //    modelBuilder.Entity<Holiday>(entity =>
+        //    {
+        //        entity.HasKey(e => e.Id);
+        //       // entity.Property(e => e.Name).IsRequired();
+        //    });
 
-        }
+        //    modelBuilder.Entity<Country>(entity =>
+        //    {
+        //        entity.HasKey(e => e.Id);
+        //        //entity.Property(e => e.Title).IsRequired();
+        //        //entity.HasOne(d => d.Publisher)
+        //        //  .WithMany(p => p.Books);
+        //    });
+
+        //}
     }
 }
 

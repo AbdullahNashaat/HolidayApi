@@ -11,7 +11,6 @@
         public string id { get; set; }
         public String? summary { get; set; }
         public StartDate start { get; set; }
-
         public EndDate end { get; set; }
     }
     public class StartDate
