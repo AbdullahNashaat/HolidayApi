@@ -11,4 +11,4 @@
 There are 3 controllers 
 - CountriesController (CRUD ops)
 - HolidaysController (CRUD ops)
-- HomeController for calling Google Calender and get data and store it in ht DB
+- HomeController for calling Google Calender and get data and store it in the DB
